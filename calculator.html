@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #666666;
+        }
+        #calculator {
+            margin: 0 auto;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            width: 320px;
+        }
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: right;
+            border-radius: 5px;
+            border: none;
+            box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            padding-right: 10px;
+        }
+        .button {
+            font-size: 24px;
+            width: 64px;
+            height: 64px;
+            margin: 5px;
+            border-radius: 50%;
+            border: none;
+            color: #ffffff;
+            background-color: #666666;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #555555;
+        }
+        .button:active {
+            box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+        }
+        #row1, #row2, #row3, #row4, #row5 {
+            display: flex;
+            justify-content: center;
+        }
+        #row1 button {
+            background-color: #ff7f50;
+        }
+        #row2 button {
+            background-color: #ffa500;
+        }
+        #row3 button {
+            background-color: #ffd700;
+        }
+        #row4 button {
+            background-color: #32cd32;
+        }
+        #row5 button {
+            background-color: #4169e1;
+        }
+        #reset {
+            font-size: 16px;
+            width: 100%;
+            height: 30px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            background-color: #a0522d;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+        #reset:hover {
+            background-color: #a75c26;
+        }
+        #reset:active {
+            box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+        }
+    </style>
+    </head>
+<body>
+
+    <h1>Calculator</h1>
+    <div id="calculator">
+        <input type="text" id="display" readonly>
+        <div id="row1">
+            <button class="button" onclick="buttonClick('7')">7</button>
+            <button class="button" onclick="buttonClick('8')">8</button>
+            <button class="button" onclick="buttonClick('9')">9</button>
+            <button class="button operator" onclick="buttonClick('/')">÷</button>
+        </div>
+        <div id="row2">
+            <button class="button" onclick="buttonClick('4')">4</button>
+            <button class="button" onclick="buttonClick('5')">5</button>
+            <button class="button" onclick="buttonClick('6')">6</button>
+            <button class="button operator" onclick="buttonClick('*')">×</button>
+        </div>
+        <div id="row3">
+            <button class="button" onclick="buttonClick('1')">1</button>
+            <button class="button" onclick="buttonClick('2')">2</button>
+            <button class="button" onclick="buttonClick('3')">3</button>
+            <button class="button operator" onclick="buttonClick('-')">−</button>
+        </div>
+        <div id="row4">
+            <button class="button" onclick="buttonClick('0')">0</button>
+            <button class="button" onclick="buttonClick('.')">.</button>
+            <button class="button operator" onclick="buttonClick('+')">+</button>
+            <button class="button" onclick="calculate()">=</button>
+        </div>
+        <button class="button reset" onclick="reset()">C</button>
+    </div>
+
+    <script src="calculator.js"></script>
+    <script>
+ const display = document.getElementById('display');
+
+function buttonClick(value) {
+    display.value += value;
+}
+
+function calculate() {
+    display.value = eval(display.value);
+}
+
+function reset() {
+    display.value = '';
+}
+
+display.addEventListener('keypress', function(event) {
+    const allowedKeys = /[0-9+\-*/().]/;
+    if (!allowedKeys.test(event.key)) {
+        event.preventDefault();
+    }
+});
+
+display.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        calculate();
+    }
+});
+
+
+    </script>
+</body>
+</html>
